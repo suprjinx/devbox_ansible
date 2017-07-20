@@ -1,0 +1,10 @@
+---
+
+- name: Configure a server or local dev machine
+  hosts: all
+  gather_facts: false
+  roles:
+    - ssh_keys
+  vars:
+    # path for source files
+    working_root: /Users/gewilson/
