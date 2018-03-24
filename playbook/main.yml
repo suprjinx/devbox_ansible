@@ -5,6 +5,7 @@
   gather_facts: false
   roles:
     - ssh_keys
+    - dotfiles
   vars:
-    # path for source files
+    # root path for sourcing files
     working_root: /Users/gewilson/

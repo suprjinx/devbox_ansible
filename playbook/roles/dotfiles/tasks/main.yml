@@ -1,0 +1,24 @@
+---
+- git:
+    repo: ssh://git@github.com/suprjinx/dotfiles.git
+    dest: /home/{{ remote_user }}/dotfiles
+    accept_hostkey: yes
+
+- git:
+    repo: https://github.com/zimfw/zimfw.git
+    dest: /home/{{ remote_user }}/.zim
+    accept_hostkey: yes
+
+- name: Config zsh
+  shell: |
+    setopt EXTENDED_GLOB
+    for template_file ( ${ZDOTDIR:-${HOME}}/.zim/templates/* ); do
+      user_file="${ZDOTDIR:-${HOME}}/.${template_file:t}"
+      touch ${user_file}
+      ( print -rn "$(<${template_file})$(<${user_file})" >! ${user_file} ) 2>/dev/null
+    done
+  args:
+    executable: /bin/zsh
+
+- name: Run dotsync to setup symlinks
+  shell: /home/{{ remote_user }}/dotfiles/dotsync.sh

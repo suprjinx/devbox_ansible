@@ -3,5 +3,6 @@ ansible_ssh_user=gwilson
 remote_user=gwilson
 
 [all]
+azure1
 mineshaft.dynu.net
 wlsn.us
