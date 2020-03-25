@@ -4,6 +4,7 @@
   hosts: all
   gather_facts: false
   roles:
+    - packages
     - ssh_keys
     - dotfiles
   vars:
