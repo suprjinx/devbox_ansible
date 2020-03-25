@@ -16,3 +16,5 @@
       - dnsutils
       - docker
       - jq
+      - silversearcher-ag
+      - openssh-server
