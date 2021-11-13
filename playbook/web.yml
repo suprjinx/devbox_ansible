@@ -1,0 +1,10 @@
+---
+
+- name: Deploy the wlsn.us website
+  hosts: oci
+  gather_facts: false
+  roles:
+    - website
+  vars:
+    # root path for sourcing files
+    working_root: /Users/gewilson/
