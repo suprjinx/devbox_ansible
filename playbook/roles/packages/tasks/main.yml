@@ -1,22 +1,37 @@
 ---
 
+- name: Add golang repo
+  ansible.builtin.apt_repository:
+    repo: 'ppa:longsleep/golang-backports'
+
+- name: Add emacs repo
+  ansible.builtin.apt_repository:
+    repo: 'ppa:ubuntu-elisp/ppa'
+    
 - name: Update apt
   apt: update_cache=yes
 
 - name: Install packages
   apt:
     pkg:
-      - emacs-nox
+      - emacs-snapshot
       - tmux
-      - fish
       - curl
-      - dnsutils
       - jq
+      - fzf
       - silversearcher-ag
-      - docker.io
+      - net-tools
+      - golang-1.20
+      - libjansson4
+      - libjansson-dev
 
-- name: Fetch bins
+- name: Fetch yq bin
   shell: |
-    wget -qO /usr/local/bin/yq https://github.com/mikefarah/yq/releases/latest/download/yq_linux_amd64 &&
-    chmod a+x /usr/local/bin/yq
+    go install github.com/mikefarah/yq/v4@latest
+  become: true
+  
+- name: Fetch docker 
+  shell: |
+    curl -fsSL https://get.docker.com -o get-docker.sh
+    sudo sh ./get-docker.sh
   become: true
