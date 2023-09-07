@@ -1,7 +1,7 @@
 ---
 
 - name: Add latest Emacs repo
-  apt_repository: repo='ppa:kelleyk/emacs'
+  apt_repository: repo='ppa:ubuntu-elisp/ppa'
 
 - name: Update apt
   apt: update_cache=yes
@@ -9,7 +9,7 @@
 - name: Install packages
   apt:
     pkg:
-      - emacs26-nox
+      - emacs-snapshot-nox
       - tmux
       - fish
       - curl
