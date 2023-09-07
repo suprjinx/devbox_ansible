@@ -1,0 +1,6 @@
+---
+- git:
+    repo: https://git@github.com/suprjinx/suprjinx.github.io.git
+    dest: /var/www/html
+    accept_hostkey: yes
+

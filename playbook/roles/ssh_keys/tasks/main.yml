@@ -5,23 +5,11 @@
     state: present
     key: https://github.com/suprjinx.keys
 
-- copy:
-    src: "{{ working_root }}/.ssh/github_id_rsa.pub"
-    dest: /home/{{ remote_user }}/.ssh/github_id_rsa.pub
-    owner: "{{ remote_user }}"
-    group: "{{ remote_user }}"
-    mode: 0644
-
-- copy:
-    src: "{{ working_root }}/.ssh/github_id_rsa"
-    dest: /home/{{ remote_user }}/.ssh/github_id_rsa
+- name: Copy ssh items from this host
+  copy:
+    src: "{{ item }}"
+    dest: "/home/{{ remote_user }}/.ssh/"
     owner: "{{ remote_user }}"
     group: "{{ remote_user }}"
     mode: 0600
-
-- copy:
-    src: "{{ working_root }}/.ssh/config"
-    dest: /home/{{ remote_user }}/.ssh/config
-    owner: "{{ remote_user }}"
-    group: "{{ remote_user }}"
-    mode: 0644
+  with_fileglob: "/home/gwilson/.ssh/*"

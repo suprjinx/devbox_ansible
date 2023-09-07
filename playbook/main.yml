@@ -1,12 +1,12 @@
 ---
 
 - name: Configure a server or local dev machine
-  hosts: all
+  hosts: gr-oss
   gather_facts: false
   roles:
-    - packages
     - ssh_keys
     - dotfiles
+    - packages
   vars:
     # root path for sourcing files
-    working_root: /Users/gewilson/
+    working_root: /home/gwilson/
